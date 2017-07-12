@@ -1,0 +1,33 @@
+﻿@model List<EAD_Project.Models.Class>
+@{
+    ViewBag.Title = "Class";
+}
+<h2>List of Classes </h2>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@s.Name</td>
+                    <td>
+                        <a href="/Home/UpdateClass/@s.Id">Update</a>
+                        <a href="/Home/DeleteClass/@s.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+
+
+

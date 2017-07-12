@@ -1,0 +1,82 @@
+﻿@using EAD_Project.Models;
+@model Tuple<AspNetUser, List<Book>>
+
+
+<div class="container text-center">
+    <input type="file" id="FileUpload1" multiple />
+    <input type="button" id="btnUpload" value="Upload Files" />
+</div>
+
+
+    <div class="container text-center">
+
+        <h2>Books</h2>
+        @{int i = 1; }
+        @foreach (var s in Model.Item2)
+        {
+            if (s.UploaderID == Model.Item1.Id)
+            {
+                <div class="col-sm-3 from-left">
+                    <a href=@s.Path class="fancybox">
+                        <div class="item">
+                            <p>@s.Name</p>
+                        </div>
+                    </a>
+                </div>
+
+                i++;
+                if (i == 3)
+                {
+                    i = 1;
+                    <br />  <hr />
+                }
+            }
+        }
+    </div>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#btnUpload').click(function () {
+
+                // Checking whether FormData is available in browser
+                if (window.FormData !== undefined) {
+
+                    var fileUpload = $("#FileUpload1").get(0);
+                    var files = fileUpload.files;
+
+                    // Create FormData object
+                    var fileData = new FormData();
+
+                    // Looping over all files and add it to FormData object
+                    for (var i = 0; i < files.length; i++) {
+                        fileData.append(files[i].name, files[i]);
+                    }
+
+                    // Adding one more key to FormData object
+                    fileData.append('username', "Attiya");
+
+                    $.ajax({
+                        url: '/Home/UploadFiles/@Model.Item1.Id',
+                        type: "POST",
+                        contentType: false, // Not to set any content header
+                        processData: false, // Not to process data
+                        data: fileData,
+                        success: function (result) {
+                            alert(result);
+                        },
+                        error: function (err) {
+                            alert(err.statusText);
+                        }
+                    });
+                } else {
+                    alert("FormData is not supported.");
+                }
+            });
+        });
+    </script>

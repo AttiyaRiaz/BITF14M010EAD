@@ -1,0 +1,20 @@
+﻿@using EAD_Project.Models;
+@model Tuple<List<Class>, AspNetUser>
+
+<div class="container text-center">
+    <h2>Please Select your Class </h2>
+                    <select name="Class" value="Select a Class :">
+
+                        @foreach (var s in Model.Item1)
+                        {
+                            <option value="">@s.Name</option>
+                        }
+                    </select>
+                <form action="/home/ClassSelected/@Model.Item2.Id" method="post">
+                    <input type="submit" value="Update" />
+                </form>
+                <a href="/Home/AddClass"><h2> Or Create a new Class</h2></a>
+ </div>
+
+
+

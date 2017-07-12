@@ -1,0 +1,56 @@
+﻿@using EAD_Project.Models
+@model RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5 from-left">
+            <figure>
+                <img class="img-responsive" src="/img/img-suscribe.jpg" alt="" />
+            </figure>
+        </div>
+        <div class="col-sm-7 from-right">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4>Create a new account.</h4>
+                <hr />
+               
+
+                @Html.ValidationSummary("", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => Model.Email, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => Model.Email, new { @class = "form-control" })
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    @Html.LabelFor(m => Model.Password, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => Model.Password, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => Model.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => Model.ConfirmPassword, new { @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" class="btn btn-default" value="Register" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+

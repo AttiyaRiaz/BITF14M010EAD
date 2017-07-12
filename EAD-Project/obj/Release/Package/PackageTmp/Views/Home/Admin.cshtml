@@ -1,0 +1,31 @@
+﻿@model List<EAD_Project.Models.AspNetUser>
+@{
+    ViewBag.Title = "Admin";
+}
+<h2>List of Students </h2>
+
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@s.Email</td>
+                    <td>
+                        <a href="/Home/Update/@s.Id">Update</a>
+                        <a href="/Home/Delete/@s.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+

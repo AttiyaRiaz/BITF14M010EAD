@@ -1,0 +1,15 @@
+﻿
+@model EAD_Project.Models.Class
+@{
+    ViewBag.Title = "UpdateClass";
+}
+
+
+<div class="container text-center">
+    <h2>Update Class</h2>
+    <form action="/home/updateConformClass/@Model.Id" method="post">
+        <input name="t1" type="text" value="@Model.Name" />
+        <input type="submit" value="Update" />
+    </form>
+</div>
+

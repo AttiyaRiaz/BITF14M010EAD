@@ -1,0 +1,13 @@
+﻿@model EAD_Project.Models.AspNetUser
+@{
+    ViewBag.Title = "Update";
+}
+
+<div class="container text-center">
+    <h2>Update</h2>
+    <form action="/home/updateConform/@Model.Id" method="post">
+        <input name="t1" type="text" value="@Model.Email" />
+        <input type="submit" value="Update" />
+    </form>
+</div>
+
